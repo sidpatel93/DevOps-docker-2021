@@ -1,0 +1,16 @@
+## Run the image
+docker run -d devopsdockeruh/simple-web-service:ubuntu
+
+## Commands to fix the missing curl error:
+
+# Attache new process to the container
+docker exec -it gifted_brattain bash
+
+# update and upgrade
+apt-get update && apt-get upgrade
+
+# install the curl utility
+apt-get install curl
+
+## run the image with given parameters
+docker exec -it gifted_brattain sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
