@@ -1,0 +1,20 @@
+FROM node:14-alpine
+
+WORKDIR /usr/local/app
+
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install
+
+RUN npm install -g serve
+
+COPY . .
+
+EXPOSE 5000
+
+ENV REACT_APP_BACKEND_URL=http://127.0.0.1:8080
+
+RUN npm run build
+
+CMD ["serve","-s", "-l", "5000","build"]
