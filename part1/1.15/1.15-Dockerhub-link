@@ -1,0 +1,15 @@
+#### Below is the link for Dockerhub repo for sample project.
+
+https://hub.docker.com/r/759153/flask-test
+
+#### Instructions:
+
+1) Pull the image using the command:
+
+    docker pull 759153/flask-test
+
+2) Run the image using the command:
+
+    docker run -p 5500:5500 759153/flask-test
+
+This will start the web app on port 5500 of the localhost.
