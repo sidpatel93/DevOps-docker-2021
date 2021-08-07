@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  frontend:
+    build: 
+      context: ./example-frontend/
+      dockerfile: dockerfile
+    ports: 
+      - 5000:5000
+    # environment: 
+    #   - REACT_APP_BACKEND_URL=http://127.0.0.1:8080
+
+    command: ["serve","-s", "-l", "5000","build"]
+    
+  backend:
+    build: 
+      context: ./example-backend/
+      dockerfile: dockerfile
+    ports: 
+      - 8080:8080
+    # environment: 
+    #   - REQUEST_ORIGIN=http://127.0.0.1:5000
+    command: [ "./server" ]
