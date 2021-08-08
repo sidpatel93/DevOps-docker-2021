@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+  frontend:
+    build: 
+      context: /home/sid/learn/DevOps-docker-2021/part2/2.3/example-frontend/
+      dockerfile: dockerfile
+    ports: 
+      - 5000:5000
+    command: ["serve","-s", "-l", "5000","build"]
+    
+  backend:
+    build: 
+      context: /home/sid/learn/DevOps-docker-2021/part2/2.3/example-backend/
+      dockerfile: dockerfile
+    ports: 
+      - 8080:8080 
+    environment: 
+      - REQUEST_ORIGIN=http://127.0.0.1:5000
+      - PORT=8080
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=db
+      - POSTGRES_PASSWORD=password
+    command: [ "./server" ]
+
+  
+  redis:
+    image: redis
+    ports: 
+      - 6379:6379
+    restart: unless-stopped
+
+  db:
+    image: postgres:13.2-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=password      
+    container_name: db_backend
