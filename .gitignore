@@ -1,3 +1,9 @@
 material-applications/
 part2/2.3/example-*
 part2/test/
+part2/2.7/data/
+part2/2.7/imgs/
+part2/2.7/model/
+part2/2.7/ml-kurkkumopo-backend/
+part2/2.7/ml-kurkkumopo-frontend/
+part2/2.7/ml-kurkkumopo-training/
