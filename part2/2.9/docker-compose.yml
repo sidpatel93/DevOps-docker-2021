@@ -1,7 +1,6 @@
 version: '3.0'
 
 services:
-
   frontend:
     build: 
       context: /home/sid/learn/DevOps-docker-2021/part2/2.3/example-frontend/
@@ -17,7 +16,7 @@ services:
     ports: 
       - 8080:8080 
     environment: 
-      - REQUEST_ORIGIN=http://127.0.0.1:5000
+      - REQUEST_ORIGIN=http://localhost
       - PORT=8080
       - REDIS_HOST=redis
       - POSTGRES_HOST=db
@@ -40,10 +39,19 @@ services:
     ports: 
       - 6379:6379
     restart: unless-stopped
-
+    volumes: 
+      - ./redis_database/:/data
+    
   db:
     image: postgres:13.2-alpine
     restart: unless-stopped
     environment:
-      - POSTGRES_PASSWORD=password      
+      - POSTGRES_PASSWORD=password
+    volumes: 
+      - ./database/:/var/lib/postgresql/data      
     container_name: db_backend
+    ports: 
+      - "5432:5432"  
+volumes: 
+  database:
+  redis_database:  
